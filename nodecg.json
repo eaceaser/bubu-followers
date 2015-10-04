@@ -1,0 +1,15 @@
+{
+  "name": "bubu-followers",
+  "version": "0.1.0",
+  "nodecgDependency": "~0.6.0",
+  "homepage": "https://github.com/eaceaser/bubu-followers",
+  "authors": [
+    "Ed Ceaser <ed@tehasdf.com>"
+  ],
+  "description": "Tracks TwitchTV channel followers for the currently authenticated TwitchAPI user.",
+  "license": "MIT",
+  "extension": {
+    "path": "extension.js"
+  },
+  "bundleDependencies": [ "lfg-twitchapi" ]
+}

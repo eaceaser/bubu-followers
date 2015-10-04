@@ -1,0 +1,12 @@
+{
+  "name": "bubu-followers",
+  "version": "0.1.0",
+  "homepage": "https://github.com/eaceaser/bubu-followers",
+  "description": "Tracks TwitchTV channel followers. Currently runs in the dashboard.",
+  "main": "extension.js",
+  "author": "Ed Ceaser <ed@tehasdf.com>",
+  "license": "MIT",
+  "dependencies": {
+    "node-localstorage": "^0.6.0"
+  }
+}
