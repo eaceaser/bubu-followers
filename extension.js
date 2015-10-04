@@ -11,6 +11,7 @@ function Followers(nodecg) {
 }
 
 Followers.prototype._scheduleFollowers = function() {
+  this.nodecg.log.debug("Polling for TwitchTV Followers.");
   this.twitch.get('/channels/{{username}}/follows', { limit: 1, direction: 'desc' }, (err, code, body) => {
     if (err) {
       this.nodecg.log.error(err);
@@ -25,13 +26,14 @@ Followers.prototype._scheduleFollowers = function() {
     }
 
     if (body.follows.length > 0) {
-      this.latestFollower.value = body.follows[0].display_name;
+      this.nodecg.log.debug("Discovered " + body.follows.length + " followers.");
+      this.latestFollower.value = body.follows[0].user.display_name;
     }
 
     setTimeout(() => { this._scheduleFollowers() }, POLL_INTERVAL);
   });
 }
 
-module.exports = function(api) { 
+module.exports = function(api) {
   return new Followers(api);
 };
