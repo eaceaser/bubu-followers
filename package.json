@@ -5,8 +5,14 @@
   "description": "Tracks TwitchTV channel followers. Currently runs in the dashboard.",
   "main": "extension.js",
   "author": "Ed Ceaser <ed@tehasdf.com>",
+  "engines": {
+    "node": ">=4.0.0"
+  },
   "license": "MIT",
   "dependencies": {
     "node-localstorage": "^0.6.0"
+  },
+  "devDependencies": {
+    "eslint": "^1.6.0"
   }
 }

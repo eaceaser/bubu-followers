@@ -7,7 +7,9 @@ for other bundles to use.
 
 ## Dependencies
 
-Depends on [lfg-twitchapi](https://github.com/SupportClass/lfg-twitchapi).
+* NodeJS 4.x
+* NodeCG 0.6.x
+* [lfg-twitchapi](https://github.com/SupportClass/lfg-twitchapi)
 
 ## Installation
 
