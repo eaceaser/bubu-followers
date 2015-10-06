@@ -40,7 +40,7 @@ Followers.prototype._scheduleFollowers = function() {
           if (parsedTs > lastFollowerTs) {
             this.nodecg.sendMessage('follower', follower);
           }
-        })
+        }.bind(this));
       }
 
       setTimeout(function() { this._scheduleFollowers() }.bind(this), POLL_INTERVAL);
