@@ -1,0 +1,16 @@
+{
+  "type": "object",
+  "properties": {
+    "username": {
+      "description": "Twitch.tv username",
+      "type": "string",
+      "default": ""
+    },
+    "pollInterval": {
+      "description": "Interval to update followers (seconds)",
+      "type": "integer",
+      "default": 30
+    }
+  },
+  "required": ["username"]
+}
