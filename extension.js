@@ -1,28 +1,28 @@
 'use strict';
 
-const POLL_INTERVAL = 30*1000;
-
 function Followers(nodecg) {
   this.nodecg = nodecg;
   this.twitch = nodecg.extensions['lfg-twitchapi'];
+  this.request = require('request');
   this.latestFollower = nodecg.Replicant('latestFollower', { defaultValue: null, persistent: true });
+  this.username = nodecg.bundleConfig.username;
+  this.pollInterval = nodecg.bundleConfig.pollInterval * 1000;
 
   this._scheduleFollowers();
 }
 
 Followers.prototype._scheduleFollowers = function() {
   this.nodecg.log.debug('Polling for TwitchTV Followers.');
-  this.twitch.get('/channels/{{username}}/follows', { limit: 50, direction: 'desc' },
-    (err, code, body) => {
+  this.request('https://api.twitch.tv/kraken/channels/' + this.username + '/follows?limit=5',
+    (err, response, body) => {
       if (err) {
         this.nodecg.log.error(err);
-        setTimeout(() => { this._scheduleFollowers(); }, POLL_INTERVAL);
+        setTimeout(() => { this._scheduleFollowers(); }, this.pollInterval);
         return;
       }
-
-      if (code != 200) {
-        this.nodecg.log.error('Unknown response code: '+code);
-        setTimeout(() => { this._scheduleFollowers(); }, POLL_INTERVAL);
+      if (response.statusCode != 200) {
+        this.nodecg.log.error('Unknown response code: ' + response.statusCode);
+        setTimeout(() => { this._scheduleFollowers(); }, this.pollInterval);
         return;
       }
 
@@ -31,6 +31,7 @@ Followers.prototype._scheduleFollowers = function() {
         lastFollowerTs = Date.parse(this.latestFollower.value.created_at);
       }
 
+      body = JSON.parse(body);
       if (body.follows.length > 0) {
         this.nodecg.log.debug('Discovered ' + body.follows.length + ' followers.');
         this.latestFollower.value = body.follows[0];
@@ -43,7 +44,7 @@ Followers.prototype._scheduleFollowers = function() {
         });
       }
 
-      setTimeout(() => { this._scheduleFollowers(); }, POLL_INTERVAL);
+      setTimeout(() => { this._scheduleFollowers(); }, this.pollInterval);
     }
   );
 };
