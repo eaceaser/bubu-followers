@@ -9,7 +9,8 @@
     "pollInterval": {
       "description": "Interval to update followers (seconds)",
       "type": "integer",
-      "default": 30
+      "default": 30,
+      "minimum": 30
     }
   },
   "required": ["username"]
