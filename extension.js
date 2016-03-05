@@ -2,7 +2,6 @@
 
 function Followers(nodecg) {
   this.nodecg = nodecg;
-  this.twitch = nodecg.extensions['lfg-twitchapi'];
   this.request = require('request');
   this.latestFollower = nodecg.Replicant('latestFollower', { defaultValue: null, persistent: true });
   this.username = nodecg.bundleConfig.username;
@@ -13,7 +12,7 @@ function Followers(nodecg) {
 
 Followers.prototype._scheduleFollowers = function() {
   this.nodecg.log.debug('Polling for TwitchTV Followers.');
-  this.request('https://api.twitch.tv/kraken/channels/' + this.username + '/follows?limit=5',
+  this.request('https://api.twitch.tv/kraken/channels/' + this.username + '/follows?limit=50',
     (err, response, body) => {
       if (err) {
         this.nodecg.log.error(err);
@@ -31,7 +30,13 @@ Followers.prototype._scheduleFollowers = function() {
         lastFollowerTs = Date.parse(this.latestFollower.value.created_at);
       }
 
-      body = JSON.parse(body);
+      try {
+        body = JSON.parse(body);
+      } catch (error) {
+        this.nodecg.log.error(error);
+        return;
+      }
+
       if (body.follows.length > 0) {
         this.nodecg.log.debug('Discovered ' + body.follows.length + ' followers.');
         this.latestFollower.value = body.follows[0];
