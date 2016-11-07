@@ -7,6 +7,7 @@ function Followers(nodecg) {
   this.latestNewFollower = nodecg.Replicant('latestNewFollower', { defaultValue: null, persistent: true });
   this.latestFollowers = nodecg.Replicant('lastestFollowers', {defaultValue: [], persistent: true });
   this.username = nodecg.bundleConfig.username;
+  this.clientid = nodecg.bundleConfig.clientid;
   this.pollInterval = nodecg.bundleConfig.pollInterval * 1000;
 
   this._scheduleFollowers();
@@ -14,7 +15,7 @@ function Followers(nodecg) {
 
 Followers.prototype._scheduleFollowers = function() {
   this.nodecg.log.debug('Polling for TwitchTV Followers.');
-  this.request('https://api.twitch.tv/kraken/channels/' + this.username + '/follows?limit=50',
+  this.request('https://api.twitch.tv/kraken/channels/' + this.username + '/follows?limit=50&client_id=' + this.clientid,
     (err, response, body) => {
       if (err) {
         this.nodecg.log.error(err);

@@ -1,6 +1,11 @@
 {
   "type": "object",
   "properties": {
+    "clientid": {
+      "description": "Twitch.tv ClientID see https://github.com/justintv/Twitch-API/blob/master/authentication.md",
+      "type": "string",
+      "default": ""
+    },
     "username": {
       "description": "Twitch.tv username",
       "type": "string",
@@ -13,5 +18,5 @@
       "minimum": 30
     }
   },
-  "required": ["username"]
+  "required": ["username", "clientid"]
 }
