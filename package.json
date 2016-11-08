@@ -1,9 +1,9 @@
 {
-  "name": "bubu-followers",
+  "name": "nodecg-followers",
   "version": "0.2.0",
-  "homepage": "https://github.com/eaceaser/bubu-followers",
+  "homepage": "https://github.com/coolacid/nodecg-followers",
   "description": "Tracks TwitchTV channel followers. Currently runs in the dashboard.",
-  "author": "Ed Ceaser <ed@tehasdf.com>",
+  "author": "CoolAcid <coolacid@gmail.com>",
   "files": [
     "extension.js"
   ],
@@ -19,7 +19,7 @@
     "eslint": "^1.6.0"
   },
   "nodecg": {
-    "compatibleRange": "~0.7.0"
+    "compatibleRange": "~0.8.0"
   },
-  "repository": "eaceaser/bubu-followers"
+  "repository": "coolacid/nodecg-followers"
 }
