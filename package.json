@@ -19,7 +19,7 @@
     "eslint": "^1.6.0"
   },
   "nodecg": {
-    "compatibleRange": "~0.7.0"
+    "compatibleRange": "~0.8.0"
   },
   "repository": "coolacid/nodecg-followers"
 }
