@@ -1,9 +1,10 @@
 {
-  "name": "bubu-followers",
-  "version": "0.1.0",
+  "name": "node-followers",
+  "version": "0.2.0",
   "nodecgDependency": "~0.6.0",
-  "homepage": "https://github.com/eaceaser/bubu-followers",
+  "homepage": "https://github.com/coolacid/nodecg-followers",
   "authors": [
+    "Jason kendall <coolacid@gmail.com>",
     "Ed Ceaser <ed@tehasdf.com>"
   ],
   "description": "Tracks TwitchTV channel followers for the currently authenticated TwitchAPI user.",
