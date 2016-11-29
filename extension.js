@@ -11,8 +11,14 @@ function Followers(nodecg) {
 }
 
 Followers.prototype._scheduleFollowers = function() {
+  var options = {
+		url: 'https://api.twitch.tv/kraken/channels/' + this.username + '/follows?limit=50',
+		headers: {
+			'Client-ID': this.nodecg.config.login.twitch.clientID
+		}
+	};
   this.nodecg.log.debug('Polling for TwitchTV Followers.');
-  this.request('https://api.twitch.tv/kraken/channels/' + this.username + '/follows?limit=50',
+  this.request(options,
     (err, response, body) => {
       if (err) {
         this.nodecg.log.error(err);
